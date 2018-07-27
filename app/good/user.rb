@@ -23,7 +23,7 @@ while count != 0
       p body[i]["user"]["id"]
     end
   elsif (count % 20) > 1
-    for i in 0..(count % 20) do
+    for i in 0..(count % 20 ) -2 do
       p body[i]["user"]["id"]
     end
   else
