@@ -3,6 +3,11 @@ require 'faraday'
 require 'json'
 require 'pp'
 
-response = Faraday.get 'http://sushi.com/nigiri/sake.json'
 
-p response
+conn = Faraday.new(:url => 'https://qiita.com/api/v2/items/')
+response = conn.get 'a372800c262f56fe688a/likes'
+
+# p response.headers
+
+user =['name','age']
+user = ['name']['age']
