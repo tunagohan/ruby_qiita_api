@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.15.2)
+      multipart-post (>= 1.2, < 3)
+    faraday_curl (0.0.2)
+      faraday (>= 0.9.0)
+    multipart-post (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  faraday
+  faraday_curl
+
+RUBY VERSION
+   ruby 2.5.1p57
+
+BUNDLED WITH
+   1.16.3
