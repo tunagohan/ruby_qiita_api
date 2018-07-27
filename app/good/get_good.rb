@@ -5,7 +5,12 @@ require 'pp'
 
 conn = Faraday.new(:url => 'https://qiita.com/api/v2/items/')
 response = conn.get 'a372800c262f56fe688a/likes?page=1'
+
+p response.headers['total-count']
+
 body = JSON.parse(response.body)
 
-p body
+# p body
+
+
 # いいねしたユーザー数
