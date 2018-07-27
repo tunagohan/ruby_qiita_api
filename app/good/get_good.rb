@@ -3,14 +3,27 @@ require 'faraday'
 require 'json'
 require 'pp'
 
-conn = Faraday.new(:url => 'https://qiita.com/api/v2/items/')
-response = conn.get 'a372800c262f56fe688a/likes?page=1'
+class LikeGetQiitaAPI
+  class << self
+    def initialize
+      @like_count = 0
+    end
 
-p response.headers['total-count']
+    def like_count
+      response = get_like_response()
+      get_count(response.headers)
+    end
 
-body = JSON.parse(response.body)
+    def get_like_response
+      connect = Faraday.new(url: 'https://qiita.com/api/v2/items/')
+      connect.get 'a372800c262f56fe688a/likes'
+    end
 
-# p body
+    def get_count(header)
+      @like_count = header['total-count']
+    end
+  end
+end
 
-
-# いいねしたユーザー数
+obj = LikeGetQiitaAPI.like_count()
+p obj
