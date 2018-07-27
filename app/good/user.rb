@@ -5,21 +5,26 @@ require 'pp'
 
 
 connect = Faraday.new(url: 'https://qiita.com/api/v2/items/')
-response = connect.get 'a372800c262f56fe688a/likes'
+page_num = 1
+while count != 0
+  response = connect.get "a372800c262f56fe688a/likes?pange=#{page_num}"
 
-body = JSON.parse(response.body)
-headers = response.headers
-link = headers["link"]
+  body = JSON.parse(response.body)
+  headers = response.headers
+  link = headers["link"]
 
-while body.length != nil
-  if body.length / 20 == 1
+  count = body.length
+  if count  == 20
     for i in 0..19 do
       p body[i]["user"]["id"]
     end
   else
-    count = body.length % 20
+    count = count % 20
     for i in 0..count do
       p body[i]["user"]["id"]
     end
   end
+
+  page_num += 1
+
 end
